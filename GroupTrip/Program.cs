@@ -43,6 +43,25 @@ double tripTotal = fuelCostTotal + pizzaCostTotal;
 Console.WriteLine("Trip total: " + tripTotal.ToString("C"));
 Console.WriteLine();
 
+// Create array that has important data about the trip
+
+string[] names = { "Ada", "Grace", "Alan", "Katherine" };
+double[] hoursWorked = { 22, 15, 30, 18};
+double[] hourlyRates = {13.50, 16.00, 11.20, 14.80};
+
+// Calculates and displays the people going, how many slices each person get, and the cost per person
+
+Console.WriteLine("=== Part 2: The Group ===");
+
+int peopleGoing = names.Length;
+double slicesEach = pizzaCount * NUMBERS_OF_SLICES/peopleGoing;
+double costPerPerson = tripTotal/peopleGoing;
+
+Console.WriteLine("People going: " + peopleGoing);
+Console.WriteLine("Slices each: " + slicesEach.ToString("F1"));
+Console.WriteLine("Cost per person: " + costPerPerson.ToString("C"));
+Console.WriteLine();
+
 // calculates the fuel cost
 
 static double FuelCost (double miles, double milesPerGallon, double pricePerGallon)
