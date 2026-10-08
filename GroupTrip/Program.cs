@@ -62,13 +62,39 @@ Console.WriteLine("Slices each: " + slicesEach.ToString("F1"));
 Console.WriteLine("Cost per person: " + costPerPerson.ToString("C"));
 Console.WriteLine();
 
+
+Console.WriteLine("=== Part 3: Who Works How Long ===");
+
+// set counters to zero to be added in the for loop and to find longest someone must work for the trip
+
+double totalHours = 0;
+double totalTakeHome = 0;
+double longCount = 0;
+
+// the for loop uses the array by going name by name to calculate and display trip information
+
+for (int i=0; i < names.Length; i++)
+{
+    double homePay = TakeHomePay(hoursWorked[i], hourlyRates[i], TAX_RATE);
+    double homePayPerHour = homePay / hoursWorked[i];
+    double hoursMustWorked = HoursToCover(costPerPerson, homePayPerHour);
+    longCount = Math.Max(longCount, hoursMustWorked);
+    totalHours += hoursWorked[i];
+    totalTakeHome += homePay;
+    Console.WriteLine(names[i] + ": " + "takes home " + homePay.ToString("C") + " for " + hoursWorked[i] +" hours, "+ homePayPerHour.ToString("C") + " per hour, must work " + hoursMustWorked.ToString("F2") + " hours");
+}
+// displays some final information relating to the trip from outside the loop
+Console.WriteLine();
+Console.WriteLine("Total hours worked: " + totalHours);
+Console.WriteLine("Total take home pay: " + totalTakeHome.ToString("C"));
+Console.WriteLine("Longest anyone must work: " + longCount.ToString("F2"));
+
 // calculates the fuel cost
 
 static double FuelCost (double miles, double milesPerGallon, double pricePerGallon)
 {
     double gallonsNeeded = miles/milesPerGallon;
     return gallonsNeeded * pricePerGallon;
-    
 }
 
 // calculates the take home pay
